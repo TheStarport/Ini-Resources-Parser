@@ -418,20 +418,28 @@ var
   FrcStrings: TStringList;
   FileResourceLink: TFileResourceLink;
 begin
+  MainForm.WarningsListBox.Items.Append('Reading .ini files in ' + DirectoryPath);
   IniFilesStrings := LoadAllValidIniFiles(DirectoryPath);
 
   for FileStrings in IniFilesStrings do
     FindResources(FileStrings.Strings);
 
+  MainForm.WarningsListBox.Items.Append('Creating IDs from ' + IntToStr(Length(Resources)) + ' resource blocks...');
   LinkResourcesWithIds(Resources, IdOffset);
+
+  MainForm.WarningsListBox.Items.Append('Writing IDs into .ini files...');
   ApplyIdsToFiles(Resources);
+
+  MainForm.WarningsListBox.Items.Append('Saving all modified .ini files...');
   SaveAllFiles(IniFilesStrings);
   if Assigned(InfocardMap.Strings) then
   begin
+    MainForm.WarningsListBox.Items.Append('Saving modified infocardmap.ini file...');
     InfocardMap.Strings.SaveToFile(InfocardMap.FileName);
     InfocardMap.Strings.Free;
   end;
 
+  MainForm.WarningsListBox.Items.Append('Saving "FLSR.frc"...');
   FrcStrings := CreateFrcStrings(Resources);
   FrcStrings.WriteBOM := True;
   FrcStrings.SaveToFile('resources.frc', TEncoding.Unicode);
@@ -443,6 +451,8 @@ begin
 
   FreeAllLoadedIniFiles(IniFilesStrings);
   SetLength(IniFilesStrings, 0);
+
+  MainForm.WarningsListBox.Items.Append('Done!');
 end;
 
 procedure TMainForm.FormCreate(Sender: TObject);
