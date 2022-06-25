@@ -1,0 +1,12 @@
+*.lps
+*.res
+*.bak
+*.trc
+*.sh
+*.bat
+*.exe
+*.dbg
+backup/
+lib/
+*debug*-*
+*release*-*
