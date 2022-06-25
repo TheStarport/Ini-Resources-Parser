@@ -115,16 +115,21 @@ var
 begin
   Result := TStringList.Create;
   for Resource in Resources do
-  begin
-    if Resource.ResourceType = TResourceType.StringType then
-      Result.Append('S ' + IntToStr(Resource.Id))
-    else if Resource.ResourceType = TResourceType.HtmlType then
-      Result.Append('H ' + IntToStr(Resource.Id));
-
     if Assigned(Resource.Resource) then
-      for LineIndex := 0 to Resource.Resource.Count - 1 do
-        Result.Append(' ' + Resource.Resource.Strings[LineIndex]);
-  end;
+    begin
+      if Resource.ResourceType = TResourceType.StringType then
+      begin
+        Result.Append('S ' + IntToStr(Resource.Id) + ' ' + Resource.Resource.Strings[0]);
+        for LineIndex := 1 to Resource.Resource.Count - 1 do
+          Result.Append(' ' + Resource.Resource.Strings[LineIndex]);
+      end
+      else if Resource.ResourceType = TResourceType.HtmlType then
+      begin
+        Result.Append('H ' + IntToStr(Resource.Id));
+        for LineIndex := 0 to Resource.Resource.Count - 1 do
+          Result.Append(' ' + Resource.Resource.Strings[LineIndex]);
+      end;
+    end;
 end;
 
 //function InsertIdToKey(const Key: String; const Value: String): String;
