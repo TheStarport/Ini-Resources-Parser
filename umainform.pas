@@ -434,7 +434,7 @@ begin
 
   FrcStrings := CreateFrcStrings(Resources);
   FrcStrings.WriteBOM := True;
-  FrcStrings.SaveToFile('frc.txt', TEncoding.Unicode);
+  FrcStrings.SaveToFile('resources.frc', TEncoding.Unicode);
   FrcStrings.Free;
 
   for FileResourceLink in Resources do
