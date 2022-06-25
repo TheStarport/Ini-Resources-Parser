@@ -38,36 +38,36 @@ The names must be unique through all files. They are case insensitive.
 The formatting of any text is following exactly the same rules as adoxa's FRC wants it. Its readme describes it as:
 
 ```
-    Sequence  RDL                       Notes
-    -----------------------------------------------------------------
-    \b        <TRA bold="true"/>
-    \B        <TRA bold="false"/>
-    \cC       <TRA color="#RRGGBB"/>    C must be lower case
-    \cName    <TRA color="#RRGGBB"/>    Name matches case
-    \cRRGGBB  <TRA color="#RRGGBB"/>    use upper case hex letters
-    \C        <TRA color="default"/>
-    \fN       <TRA font="N"/>           one or two digits
-    \F        <TRA font="default"/>
-    \hN       <POS h="N" relH="true"/>  one to three digits
-    \i        <TRA italic="true"/>
-    \I        <TRA italic="false"/>
-    \l        <JUST loc="l"/>           left
-    \m        <JUST loc="c"/>           center (middle)
-    \n        <PARA/>                   adds a new line in plain text
-    \r        <JUST loc="r"/>           right
-    \u        <TRA underline="true"/>
-    \U        <TRA underline="false"/>
+Sequence  RDL                       Notes
+-----------------------------------------------------------------
+\b        <TRA bold="true"/>
+\B        <TRA bold="false"/>
+\cC       <TRA color="#RRGGBB"/>    C must be lower case
+\cName    <TRA color="#RRGGBB"/>    Name matches case
+\cRRGGBB  <TRA color="#RRGGBB"/>    use upper case hex letters
+\C        <TRA color="default"/>
+\fN       <TRA font="N"/>           one or two digits
+\F        <TRA font="default"/>
+\hN       <POS h="N" relH="true"/>  one to three digits
+\i        <TRA italic="true"/>
+\I        <TRA italic="false"/>
+\l        <JUST loc="l"/>           left
+\m        <JUST loc="c"/>           center (middle)
+\n        <PARA/>                   adds a new line in plain text
+\r        <JUST loc="r"/>           right
+\u        <TRA underline="true"/>
+\U        <TRA underline="false"/>
 
-    Name      RRGGBB        C    RRGGBB      C may be prefixed with:
-    ----      ------        -    ------
-    Gray      808080        z    000000      d to use 40 (dark)
-    Blue      4848E0        r    FF0000      h to use 80 (half)
-    Green     3BBF1D        g    00FF00      l to use C0 (light)
-    Aqua      87C3E0        b    0000FF
-    Red       BF1D1D        c    00FFFF
-    Fuchsia   8800C2        m    FF00FF
-    Yellow    F5EA52        y    FFFF00
-    White     FFFFFF        w    FFFFFF
+Name      RRGGBB        C    RRGGBB      C may be prefixed with:
+----      ------        -    ------
+Gray      808080        z    000000      d to use 40 (dark)
+Blue      4848E0        r    FF0000      h to use 80 (half)
+Green     3BBF1D        g    00FF00      l to use C0 (light)
+Aqua      87C3E0        b    0000FF
+Red       BF1D1D        c    00FFFF
+Fuchsia   8800C2        m    FF00FF
+Yellow    F5EA52        y    FFFF00
+White     FFFFFF        w    FFFFFF
 ```
 
 ## Adding Text to the Keys
@@ -76,19 +76,19 @@ Find the line you want to add the resource text and you want to have automatical
 
 Example:
 ```
-    [Weapon]
-    nickname = gun_mark01
-    ids_name = 1
-    ;res str
-    ; Big Bang Gun
-    ids_info = 2
-    ;res html
-    ; \bBold Heading\B
-    ; \mCentered Text\l
-    ; \n
-    ; This is the last line of this infocard.
-    
-    ...and the rest of the weapon settings...
+[Weapon]
+nickname = gun_mark01
+ids_name = 1
+;res str
+; Big Bang Gun
+ids_info = 2
+;res html
+; \bBold Heading\B
+; \mCentered Text\l
+; \n
+; This is the last line of this infocard.
+
+...and the rest of the weapon settings...
 ```
 
 With this the resource text "Starflier" will be automatically assigned to the preceeding `ids_name`, and the infocard text will be inserted for the `ids_info`.
@@ -100,16 +100,16 @@ With this the resource text "Starflier" will be automatically assigned to the pr
 Some values like `firstname_male` accept an entire range of IDs. This can be done by simply writing multiple resource blocks below the line:
 
 ```
-    firstname_male = 1, 100
-    ;res str
-    ; Hans
-    ;res str
-    ; Olaf
-    ;res str
-    ; Heino
-    ;res str
-    ; Peter
-    ...
+firstname_male = 1, 100
+;res str
+; Hans
+;res str
+; Olaf
+;res str
+; Heino
+;res str
+; Peter
+...
 ```
 
 The tool automatically recognizes those special cases and assigns the first and last ID correctly to this.
@@ -136,20 +136,20 @@ And then there's always a second infocard which describes more detailed informat
 To create those two related infocards for a base, simply add two resource blocks to the base's `ids_info`:
 
 ```
-    [Object]
-    nickname = li01_01_Base
-    ids_name = 1
-    ;res str
-    ; Planet Manhatten
-    ids_info = 1
-    ;res html
-    ; Diameter: 500km
-    ; Mass: 3*10^8kg
-    ; Population: 500000
-    ;res html
-    ; Planet Manhatten was the first planet settled by colonists in Sirius.
-    ; The entire planet's surface is one big connected city.
-    ; It is the capital of Liberty.
+[Object]
+nickname = li01_01_Base
+ids_name = 1
+;res str
+; Planet Manhatten
+ids_info = 1
+;res html
+; Diameter: 500km
+; Mass: 3*10^8kg
+; Population: 500000
+;res html
+; Planet Manhatten was the first planet settled by colonists in Sirius.
+; The entire planet's surface is one big connected city.
+; It is the capital of Liberty.
 ```
 
 To achieve the linking of those two resources the tool will automatically add a `map` entry for it inside the `infocardmap.ini` file usually located in DATA\INTERFACE\ directory. To always generate them anew it does delete all entries that contain an ID number which is outside the vanilla game's ID range.
@@ -159,25 +159,25 @@ To achieve the linking of those two resources the tool will automatically add a 
 The tool can also create global resources at the first line of any read file that are not directly linked to something. This is only useful if this global resource is given a name and referenced later. One example may be the barebone ship statistic infocards.
 
 ```
-    ;res html ShipStats
-    ; Hull Points:
-    ; Mass:
-    ; Nanobots/Batteries:
-    ; Cargo Space:
+;res html ShipStats
+; Hull Points:
+; Mass:
+; Nanobots/Batteries:
+; Cargo Space:
 ```
 
 and then later referenced by:
 
 ```
-    [Ship]
-    nickname = ge_fighter
-    ids_name = 1
-    ;res str
-    ; Starflier
-    ids_info2 = 1
-    ;res $ShipStats
-    ids_info3 = 1
-    ...
+[Ship]
+nickname = ge_fighter
+ids_name = 1
+;res str
+; Starflier
+ids_info2 = 1
+;res $ShipStats
+ids_info3 = 1
+...
 ```
 
 ## Handling grammatical cases for Faction Names and Zones
@@ -187,12 +187,12 @@ Freelancer allows for multiple entries of a faction name or zone name to handle 
 Again, for those simply add multiple resource blocks to the relevant entries. The tool will always just assign the first resource's ID in the ini file, but keep the others and put them into the output in the defined order.
 
 ```
-    [Zone]
-    ids_name = 1
-    ;res str
-    ; Badlands
-    ;res str
-    ; The Badlands
-    ;res str
-    ; the Badlands
+[Zone]
+ids_name = 1
+;res str
+; Badlands
+;res str
+; The Badlands
+;res str
+; the Badlands
 ```
