@@ -72,16 +72,6 @@ begin
   Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'thrust_charge_rate'));
 end;
 
-function MassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'mass'));
-end;         
-
-function VolumeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'volume'));
-end;
-
 function GetPowerPlaceholderReplacers: TPlaceholderReplacerArray;
 begin
   Result := nil;

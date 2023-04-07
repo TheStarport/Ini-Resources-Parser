@@ -175,6 +175,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UResourceParsing"/>
       </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uengineplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UEnginePlaceholders"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

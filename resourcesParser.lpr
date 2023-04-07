@@ -16,7 +16,7 @@ uses
   UPowerPlaceholders,
   UPlaceholderReplacing,
   UPlaceholderReplacerCommons,
-  UResourceParsing;
+  UResourceParsing, UEnginePlaceholders;
 
 {$R *.res}
 
