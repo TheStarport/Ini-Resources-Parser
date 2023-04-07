@@ -10,8 +10,13 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
-  Forms, UMainForm
-  { you can add units after this };
+  Forms,
+  UMainForm,
+  UBlockParsing,
+  UPowerPlaceholders,
+  UPlaceholderReplacing,
+  UPlaceholderReplacerCommons,
+  UResourceParsing;
 
 {$R *.res}
 
@@ -23,4 +28,3 @@ begin
   Application.CreateForm(TMainForm, MainForm);
   Application.Run;
 end.
-

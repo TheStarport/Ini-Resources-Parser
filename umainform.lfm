@@ -18,7 +18,7 @@ object MainForm: TMainForm
     TabOrder = 0
   end
   object SelectDirectoryDialog: TSelectDirectoryDialog
-    Title = 'Select Freelancer EQUIPMENT directory'
+    Title = 'Select Freelancer DATA directory'
     Left = 148
     Top = 16
   end

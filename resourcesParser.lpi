@@ -24,6 +24,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="placeholderReplacers"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <Parsing>
@@ -64,6 +65,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="placeholderReplacers"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -95,6 +97,7 @@
           </Target>
           <SearchPaths>
             <IncludeFiles Value="$(ProjOutDir)"/>
+            <OtherUnitFiles Value="placeholderReplacers"/>
             <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
           </SearchPaths>
           <CodeGeneration>
@@ -147,6 +150,31 @@
         <ResourceBaseClass Value="Form"/>
         <UnitName Value="UMainForm"/>
       </Unit>
+      <Unit>
+        <Filename Value="ublockparsing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UBlockParsing"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\upowerplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UPowerPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uplaceholderreplacing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UPlaceholderReplacing"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uplaceholderreplacercommons.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UPlaceholderReplacerCommons"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uresourceparsing.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UResourceParsing"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -156,6 +184,7 @@
     </Target>
     <SearchPaths>
       <IncludeFiles Value="$(ProjOutDir)"/>
+      <OtherUnitFiles Value="placeholderReplacers"/>
       <UnitOutputDirectory Value="lib/$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
     <Parsing>
