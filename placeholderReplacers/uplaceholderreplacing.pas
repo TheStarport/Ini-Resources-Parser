@@ -23,7 +23,8 @@ uses
   UCloakingDevicePlaceholders,
   UArmorPlaceholders,
   UCommodityPlaceholders,
-  UThrusterPlaceholders;
+  UThrusterPlaceholders,
+  UShieldGeneratorPlaceholders;
 
 procedure ReplacePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList; const PlaceholderReplacers: TPlaceholderReplacerArray);
 var
@@ -60,6 +61,7 @@ begin
     'armor': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetArmorPlaceholderReplacers);
     'commodity': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCommodityPlaceholderReplacers);            
     'thruster': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetThrusterPlaceholderReplacers);
+    'shieldgenerator': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetShieldGeneratprPlaceholderReplacers);
   end;
 end;
 
