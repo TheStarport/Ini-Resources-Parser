@@ -9,7 +9,7 @@ uses
   SysUtils,
   UPlaceholderReplacerCommons;
 
-function GetShieldGeneratprPlaceholderReplacers: TPlaceholderReplacerArray;
+function GetShieldGeneratorPlaceholderReplacers: TPlaceholderReplacerArray;
 
 implementation
 
@@ -88,7 +88,7 @@ begin
   end;
 end;
 
-function GetShieldGeneratprPlaceholderReplacers: TPlaceholderReplacerArray;
+function GetShieldGeneratorPlaceholderReplacers: TPlaceholderReplacerArray;
 begin
   Result := nil;
   SetLength(Result, 11);

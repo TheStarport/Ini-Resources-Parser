@@ -7,7 +7,7 @@ interface
 uses
   Classes,
   SysUtils;
-                        
+
 procedure ReplaceResourcePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList);
 
 implementation
@@ -24,7 +24,9 @@ uses
   UArmorPlaceholders,
   UCommodityPlaceholders,
   UThrusterPlaceholders,
-  UShieldGeneratorPlaceholders;
+  UShieldGeneratorPlaceholders,
+  UCounterMeasureDropperPlaceholders,
+  UCounterMeasureFlarePlaceholders;
 
 procedure ReplacePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList; const PlaceholderReplacers: TPlaceholderReplacerArray);
 var
@@ -54,16 +56,17 @@ begin
     'engine': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetEnginePlaceholderReplacers);
     'power': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetPowerPlaceholderReplacers);
     'repairkit': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetRepairPlaceholderReplacers);
-    'shieldbattery': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetRepairPlaceholderReplacers);         
+    'shieldbattery': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetRepairPlaceholderReplacers);
     'scanner': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetScannerPlaceholderReplacers);
-    'tractor': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetTractorPlaceholderReplacers);        
-    'cloakingdevice': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCloakingDevicePlaceholderReplacers);       
+    'tractor': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetTractorPlaceholderReplacers);
+    'cloakingdevice': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCloakingDevicePlaceholderReplacers);
     'armor': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetArmorPlaceholderReplacers);
-    'commodity': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCommodityPlaceholderReplacers);            
+    'commodity': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCommodityPlaceholderReplacers);
     'thruster': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetThrusterPlaceholderReplacers);
-    'shieldgenerator': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetShieldGeneratprPlaceholderReplacers);
+    'shieldgenerator': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetShieldGeneratorPlaceholderReplacers);
+    'countermeasuredropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureDropperPlaceholderReplacers);       
+    'countermeasure': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureFlarePlaceholderReplacers);
   end;
 end;
 
 end.
-

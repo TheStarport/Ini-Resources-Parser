@@ -16,7 +16,8 @@ uses
   UPowerPlaceholders,
   UPlaceholderReplacing,
   UPlaceholderReplacerCommons,
-  UResourceParsing, UEnginePlaceholders;
+  UResourceParsing, UEnginePlaceholders, URepairPlaceholders, UScannerPlaceholders, UTractorPlaceholders, UCloakingDevicePlaceholders, UArmorPlaceholders, UCommodityPlaceholders, 
+UThrusterPlaceholders, UShieldGeneratorPlaceholders, UCounterMeasureDropperPlaceholders, UCounterMeasureFlarePlaceholders;
 
 {$R *.res}
 

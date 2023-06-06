@@ -8,14 +8,15 @@ uses
   Classes,
   SysUtils;
 
-function FindBlockBegin(const Strings: TStringList; LineNumber: ValSInt): ValSInt;
-function FindBlockEnd(const Strings: TStringList; LineNumber: ValSInt): ValSInt;
-function FindBlockType(const Strings: TStringList; LineNumber: ValSInt): String;
+function FindBlockBegin(const Strings: TStrings; LineNumber: ValSInt): ValSInt;
+function FindBlockBeginByNickname(const Strings: TStrings; const Nickname: String): ValSInt;
+function FindBlockEnd(const Strings: TStrings; LineNumber: ValSInt): ValSInt;
+function FindBlockType(const Strings: TStrings; LineNumber: ValSInt): String;
 function FindKeyValue(const Strings: TStrings; const StartLineNumber: ValSInt; const EndLineNumber: ValSInt; const Key: String): String;
 
 implementation
 
-function FindBlockBegin(const Strings: TStringList; LineNumber: ValSInt): ValSInt;
+function FindBlockBegin(const Strings: TStrings; LineNumber: ValSInt): ValSInt;
 var
   Line: String;
 begin
@@ -31,7 +32,24 @@ begin
   end;
 end;
 
-function FindBlockEnd(const Strings: TStringList; LineNumber: ValSInt): ValSInt;
+function FindBlockBeginByNickname(const Strings: TStrings; const Nickname: String): ValSInt;
+var
+  LineNumber: ValSInt;
+  Line: String;
+begin
+  Result := -1;
+  for LineNumber := 0 to Strings.Count - 1 do
+  begin
+    Line := Strings.Strings[LineNumber].Trim.ToLower;
+    if Line.StartsWith('nickname') and Line.EndsWith(Nickname) then
+    begin
+      Result := FindBlockBegin(Strings, LineNumber);
+      Break;
+    end;
+  end;
+end;
+
+function FindBlockEnd(const Strings: TStrings; LineNumber: ValSInt): ValSInt;
 var
   Line: String;
 begin
@@ -47,7 +65,7 @@ begin
   end;
 end;
 
-function FindBlockType(const Strings: TStringList; LineNumber: ValSInt): String;
+function FindBlockType(const Strings: TStrings; LineNumber: ValSInt): String;
 var
   Line: String;
 begin

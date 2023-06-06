@@ -180,6 +180,56 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UEnginePlaceholders"/>
       </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\urepairplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="URepairPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uscannerplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UScannerPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\utractorplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UTractorPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ucloakingdeviceplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UCloakingDevicePlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uarmorplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UArmorPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ucommodityplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UCommodityPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uthrusterplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UThrusterPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ushieldgeneratorplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UShieldGeneratorPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ucountermeasuredropperplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UCounterMeasureDropperPlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ucountermeasureflareplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UCounterMeasureFlarePlaceholders"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
