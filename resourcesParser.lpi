@@ -258,6 +258,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UProjectileReplacers"/>
       </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ugunplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UGunPlaceholders"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

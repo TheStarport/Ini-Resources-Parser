@@ -11,15 +11,17 @@ uses
 
 function FindProjectileArch(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): TBlockPositions;
 function DamageTypeReplacer(const ProjectileArch: TBlockPositions): String;
+function LifetimeParser(const ProjectileArch: TBlockPositions): Single;
 function LifetimeReplacer(const ProjectileArch: TBlockPositions): String;
 function RangeReplacer(const ProjectileArch: TBlockPositions): String;
 function DiversionReplacer(const ProjectileArch: TBlockPositions): String;
+function TopSpeedParser(const ProjectileArch: TBlockPositions): Single;
 function TopSpeedReplacer(const ProjectileArch: TBlockPositions): String;
 function AccelerationReplacer(const ProjectileArch: TBlockPositions): String;
 function TurnRateReplacer(const ProjectileArch: TBlockPositions): String;
 function SeekRangeReplacer(const ProjectileArch: TBlockPositions): String;
 function DetonationDistanceReplacer(const ProjectileArch: TBlockPositions): String;
-function SafeTimeReplacer(const ProjectileArch: TBlockPositions): String;                
+function SafeTimeReplacer(const ProjectileArch: TBlockPositions): String;
 function TimeToLockReplacer(const ProjectileArch: TBlockPositions): String;
 function HullDamageReplacer(const ProjectileArch: TBlockPositions): String;
 function EnergyDamageReplacer(const ProjectileArch: TBlockPositions): String;
@@ -29,6 +31,7 @@ function ExplosionRadiusReplacer(const ProjectileArch: TBlockPositions): String;
 implementation
 
 uses
+  Math,
   UPlaceholderReplacerCommons,
   UExplosionReplacers;
 
@@ -69,11 +72,18 @@ begin
   end;
 end;
 
+function LifetimeParser(const ProjectileArch: TBlockPositions): Single;
+begin
+  Result := 0;
+  if (ProjectileArch.BeginLineNumber >= 0) and (ProjectileArch.EndLineNumber > ProjectileArch.BeginLineNumber) then
+    TryStrToFloat(FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'lifetime'), Result);
+end;
+
 function LifetimeReplacer(const ProjectileArch: TBlockPositions): String;
 begin
   Result := '';
   if (ProjectileArch.BeginLineNumber >= 0) and (ProjectileArch.EndLineNumber > ProjectileArch.BeginLineNumber) then
-    Result := ParseFloatStringToNumberString(FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'lifetime'));
+    Result := ParseFloatStringToNumberString(LifetimeParser(ProjectileArch).ToString);
 end;
 
 function RangeReplacer(const ProjectileArch: TBlockPositions): String;
@@ -90,8 +100,9 @@ begin
     Result := ParseFloatStringToNumberString(FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'diversion_pctg'));
 end;
 
-function TopSpeedReplacer(const ProjectileArch: TBlockPositions): String;
+function TopSpeedParser(const ProjectileArch: TBlockPositions): Single;
 var
+  TopSpeed: String;
   MotorNickname: String;
   MotorBeginLineNumber: ValSInt;
   MotorEndLineNumber: ValSInt;
@@ -100,13 +111,15 @@ var
   ParsedMotorAcceleration: Single;
   ParsedMotorLifetime: Single;
 begin
-  Result := '';
+  Result := 0;
   if (ProjectileArch.BeginLineNumber >= 0) and (ProjectileArch.EndLineNumber > ProjectileArch.BeginLineNumber) then
   begin
     // This is for Mines
-    Result := ParseFloatStringToNumberString(FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'top_speed'));
+    TopSpeed := FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'top_speed');
+    if not TopSpeed.IsEmpty then
+      TryStrToFloat(TopSpeed, Result)
     // This is for any Missiles
-    if Result.IsEmpty then
+    else
     begin
       MotorNickname := FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'motor');
       if MotorNickname.Length > 0 then
@@ -116,10 +129,17 @@ begin
         MotorAcceleration := FindKeyValue(ProjectileArch.Strings, MotorBeginLineNumber, MotorEndLineNumber, 'accel');
         MotorLifetime := FindKeyValue(ProjectileArch.Strings, MotorBeginLineNumber, MotorEndLineNumber, 'lifetime');
         if TryStrToFloat(MotorAcceleration, ParsedMotorAcceleration) and TryStrToFloat(MotorLifetime, ParsedMotorLifetime) then
-          Result := ParseFloatStringToNumberString((ParsedMotorAcceleration * ParsedMotorLifetime).ToString);
+          Result := ParsedMotorAcceleration * ParsedMotorLifetime;
       end;
     end;
   end;
+end;
+
+function TopSpeedReplacer(const ProjectileArch: TBlockPositions): String;
+begin
+  Result := '';
+  if (ProjectileArch.BeginLineNumber >= 0) and (ProjectileArch.EndLineNumber > ProjectileArch.BeginLineNumber) then
+    Result := ParseFloatStringToNumberString(TopSpeedParser(ProjectileArch).ToString);
 end;
 
 function AccelerationReplacer(const ProjectileArch: TBlockPositions): String;
@@ -149,21 +169,12 @@ end;
 
 function TurnRateReplacer(const ProjectileArch: TBlockPositions): String;
 var
-  MotorNickname: String;
-  MotorBeginLineNumber: ValSInt;
-  MotorEndLineNumber: ValSInt;
+  ParsedAngularVelocity: Single;
 begin
   Result := '';
   if (ProjectileArch.BeginLineNumber >= 0) and (ProjectileArch.EndLineNumber > ProjectileArch.BeginLineNumber) then
-  begin
-    MotorNickname := FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'motor');
-    if MotorNickname.Length > 0 then
-    begin
-      MotorBeginLineNumber := FindBlockBeginByNickname(ProjectileArch.Strings, MotorNickname) + 1;
-      MotorEndLineNumber := FindBlockEnd(ProjectileArch.Strings, MotorBeginLineNumber);
-      Result := ParseFloatStringToNumberString(FindKeyValue(ProjectileArch.Strings, MotorBeginLineNumber, MotorEndLineNumber, 'max_angular_velocity'));
-    end;
-  end;
+    if TryStrToFloat(FindKeyValue(ProjectileArch.Strings, ProjectileArch.BeginLineNumber, ProjectileArch.EndLineNumber, 'max_angular_velocity'), ParsedAngularVelocity) then
+      Result := ParseFloatStringToNumberString(Math.RadToDeg(ParsedAngularVelocity).ToString);
 end;
 
 function SeekRangeReplacer(const ProjectileArch: TBlockPositions): String;
