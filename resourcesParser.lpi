@@ -230,6 +230,16 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UCounterMeasureFlarePlaceholders"/>
       </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\umineplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMinePlaceholders"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uexplosionreplacers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UExplosionReplacers"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
