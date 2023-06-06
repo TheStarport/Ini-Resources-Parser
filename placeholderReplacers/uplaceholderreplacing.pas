@@ -27,6 +27,7 @@ uses
   UShieldGeneratorPlaceholders,
   UCounterMeasureDropperPlaceholders,
   UCounterMeasureFlarePlaceholders,
+  UMineDropperPlaceholders,
   UMinePlaceholders;
 
 procedure ReplacePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList; const PlaceholderReplacers: TPlaceholderReplacerArray);
@@ -66,7 +67,8 @@ begin
     'thruster': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetThrusterPlaceholderReplacers);
     'shieldgenerator': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetShieldGeneratorPlaceholderReplacers);
     'countermeasuredropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureDropperPlaceholderReplacers);       
-    'countermeasure': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureFlarePlaceholderReplacers);
+    'countermeasure': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureFlarePlaceholderReplacers);          
+    'minedropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMineDropperPlaceholderReplacers);
     'mine': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMinePlaceholderReplacers);
   end;
 end;

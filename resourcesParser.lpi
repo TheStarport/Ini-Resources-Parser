@@ -239,6 +239,11 @@
         <UnitName Value="UMinePlaceholders"/>
       </Unit>
       <Unit>
+        <Filename Value="placeholderReplacers\uminedropperplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMineDropperPlaceholders"/>
+      </Unit>
+      <Unit>
         <Filename Value="placeholderReplacers\uexplosionreplacers.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UExplosionReplacers"/>
