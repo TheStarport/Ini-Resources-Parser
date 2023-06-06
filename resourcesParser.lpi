@@ -234,6 +234,11 @@
         <UnitName Value="UCounterMeasureFlarePlaceholders"/>
       </Unit>
       <Unit>
+        <Filename Value="placeholderReplacers\umunitionplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UMunitionPlaceholders"/>
+      </Unit>
+      <Unit>
         <Filename Value="placeholderReplacers\umineplaceholders.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UMinePlaceholders"/>

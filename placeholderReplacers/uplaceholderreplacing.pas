@@ -28,7 +28,8 @@ uses
   UCounterMeasureDropperPlaceholders,
   UCounterMeasureFlarePlaceholders,
   UMineDropperPlaceholders,
-  UMinePlaceholders;
+  UMinePlaceholders,
+  UMunitionPlaceholders;
 
 procedure ReplacePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList; const PlaceholderReplacers: TPlaceholderReplacerArray);
 var
@@ -69,7 +70,8 @@ begin
     'countermeasuredropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureDropperPlaceholderReplacers);       
     'countermeasure': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetCounterMeasureFlarePlaceholderReplacers);          
     'minedropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMineDropperPlaceholderReplacers);
-    'mine': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMinePlaceholderReplacers);
+    'mine': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMinePlaceholderReplacers);                     
+    'munition': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMunitionPlaceholderReplacers);
   end;
 end;
 
