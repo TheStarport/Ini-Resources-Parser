@@ -14,21 +14,22 @@ function GetCounterMeasureFlarePlaceholderReplacers: TPlaceholderReplacerArray;
 implementation
 
 uses
-  UBlockParsing;
+  UBlockParsing,
+  UProjectileReplacers;
 
 function RangeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'range'));
+  Result := UProjectileReplacers.RangeReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function DiversionReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'diversion_pctg'));
+  Result := UProjectileReplacers.DiversionReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function LifetimeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'lifetime'));
+  Result := UProjectileReplacers.LifetimeReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function GetCounterMeasureFlarePlaceholderReplacers: TPlaceholderReplacerArray;

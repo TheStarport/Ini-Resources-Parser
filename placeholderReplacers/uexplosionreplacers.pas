@@ -5,17 +5,12 @@ unit UExplosionReplacers;
 interface
 
 uses
-  Classes, SysUtils;
+  Classes,
+  SysUtils,
+  UBlockParsing;
 
-type
-  TBlockPositions = record
-    Strings: TStrings;
-    BeginLineNumber: ValSInt;
-    EndLineNumber: ValSInt;
-  end;
-
-function FindExplosionArch(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): TBlockPositions;    
-function HullDamageReplacer(const ExplosionArch: TBlockPositions): String;     
+function FindExplosionArch(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): TBlockPositions;
+function HullDamageReplacer(const ExplosionArch: TBlockPositions): String;
 function EnergyDamageReplacer(const ExplosionArch: TBlockPositions): String;
 function ImpulseReplacer(const ExplosionArch: TBlockPositions): String;
 function ExplosionRadiusReplacer(const ExplosionArch: TBlockPositions): String;
@@ -23,8 +18,7 @@ function ExplosionRadiusReplacer(const ExplosionArch: TBlockPositions): String;
 implementation
 
 uses
-  UPlaceholderReplacerCommons,
-  UBlockParsing;
+  UPlaceholderReplacerCommons;
 
 const
   ShieldDamageFactor = 0.5;
@@ -45,7 +39,7 @@ begin
 end;
 
 function HullDamageReplacer(const ExplosionArch: TBlockPositions): String;
-begin          
+begin
   Result := '';
   if (ExplosionArch.BeginLineNumber >= 0) and (ExplosionArch.EndLineNumber > ExplosionArch.BeginLineNumber) then
     Result := ParseFloatStringToNumberString(FindKeyValue(ExplosionArch.Strings, ExplosionArch.BeginLineNumber, ExplosionArch.EndLineNumber, 'hull_damage'));
@@ -57,7 +51,7 @@ var
   EnergyDamage: String;
   ParsedHullDamage: Single;
   ParsedEnergyDamage: Single;
-begin        
+begin
   Result := '';
   if (ExplosionArch.BeginLineNumber >= 0) and (ExplosionArch.EndLineNumber > ExplosionArch.BeginLineNumber) then
   begin
@@ -69,14 +63,14 @@ begin
 end;
 
 function ImpulseReplacer(const ExplosionArch: TBlockPositions): String;
-begin         
+begin
   Result := '';
   if (ExplosionArch.BeginLineNumber >= 0) and (ExplosionArch.EndLineNumber > ExplosionArch.BeginLineNumber) then
     Result := ParseFloatStringToNumberString(FindKeyValue(ExplosionArch.Strings, ExplosionArch.BeginLineNumber, ExplosionArch.EndLineNumber, 'impulse'));
 end;
 
 function ExplosionRadiusReplacer(const ExplosionArch: TBlockPositions): String;
-begin          
+begin
   Result := '';
   if (ExplosionArch.BeginLineNumber >= 0) and (ExplosionArch.EndLineNumber > ExplosionArch.BeginLineNumber) then
     Result := ParseFloatStringToNumberString(FindKeyValue(ExplosionArch.Strings, ExplosionArch.BeginLineNumber, ExplosionArch.EndLineNumber, 'radius'));

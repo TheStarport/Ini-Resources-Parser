@@ -15,7 +15,7 @@ implementation
 
 uses
   UBlockParsing,
-  UExplosionReplacers;
+  UProjectileReplacers;
 
 function RefireRateReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 var
@@ -29,53 +29,53 @@ begin
 end;
 
 function TopSpeedReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'top_speed'));
+begin                                                           
+  Result := UProjectileReplacers.TopSpeedReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function AccelerationReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'acceleration'));
+  Result := UProjectileReplacers.AccelerationReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function SeekRangeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'seek_dist'));
+  Result := UProjectileReplacers.SeekRangeReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function DetonationDistanceReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'detonation_dist'));
+  Result := UProjectileReplacers.DetonationDistanceReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function SafeTimeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'owner_safe_time'));
+  Result := UProjectileReplacers.SafeTimeReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function LifetimeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'lifetime'));
+  Result := UProjectileReplacers.LifetimeReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function HullDamageReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := UExplosionReplacers.HullDamageReplacer(FindExplosionArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
+  Result := UProjectileReplacers.HullDamageReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function EnergyDamageReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := UExplosionReplacers.EnergyDamageReplacer(FindExplosionArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
+  Result := UProjectileReplacers.EnergyDamageReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function ImpulseReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := UExplosionReplacers.ImpulseReplacer(FindExplosionArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
+  Result := UProjectileReplacers.ImpulseReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function ExplosionRadiusReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 begin
-  Result := UExplosionReplacers.ExplosionRadiusReplacer(FindExplosionArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
+  Result := UProjectileReplacers.ExplosionRadiusReplacer(TBlockPositions.Create(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function GetMinePlaceholderReplacers: TPlaceholderReplacerArray;

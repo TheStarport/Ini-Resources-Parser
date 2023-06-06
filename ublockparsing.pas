@@ -1,12 +1,24 @@
 unit UBlockParsing;
 
-{$mode ObjFPC}{$H+}
+{$mode ObjFPC}
+{$H+}
+{$modeSwitch advancedRecords}
 
 interface
 
 uses
   Classes,
   SysUtils;
+
+type
+  TBlockPositions = record
+  public
+    constructor Create(const Strings: TStrings; const BeginLineNumber: ValSInt; const EndLineNumber: ValSInt);
+  var
+    Strings: TStrings;
+    BeginLineNumber: ValSInt;
+    EndLineNumber: ValSInt;
+  end;
 
 function FindBlockBegin(const Strings: TStrings; LineNumber: ValSInt): ValSInt;
 function FindBlockBeginByNickname(const Strings: TStrings; const Nickname: String): ValSInt;
@@ -93,6 +105,13 @@ begin
     if Line.StartsWith(Key) then
       Result := Line.Substring(Line.IndexOf('=') + 1).Trim;
   end;
+end;
+
+constructor TBlockPositions.Create(const Strings: TStrings; const BeginLineNumber: ValSInt; const EndLineNumber: ValSInt);
+begin
+  Self.Strings := Strings;
+  Self.BeginLineNumber := BeginLineNumber;
+  Self.EndLineNumber := EndLineNumber;
 end;
 
 end.
