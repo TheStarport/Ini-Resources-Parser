@@ -4,6 +4,9 @@
     <Version Value="12"/>
     <PathDelim Value="\"/>
     <General>
+      <Flags>
+        <MainUnitHasUsesSectionForAllUnits Value="False"/>
+      </Flags>
       <SessionStorage Value="InProjectDir"/>
       <Title Value="Resources Parser"/>
       <Scaled Value="True"/>
@@ -239,6 +242,11 @@
         <Filename Value="placeholderReplacers\uexplosionreplacers.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UExplosionReplacers"/>
+      </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\uprojectilereplacers.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UProjectileReplacers"/>
       </Unit>
     </Units>
   </ProjectOptions>

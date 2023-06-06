@@ -11,13 +11,7 @@ uses
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
   Forms,
-  UMainForm,
-  UBlockParsing,
-  UPowerPlaceholders,
-  UPlaceholderReplacing,
-  UPlaceholderReplacerCommons,
-  UResourceParsing, UEnginePlaceholders, URepairPlaceholders, UScannerPlaceholders, UTractorPlaceholders, UCloakingDevicePlaceholders, UArmorPlaceholders, UCommodityPlaceholders, 
-UThrusterPlaceholders, UShieldGeneratorPlaceholders, UCounterMeasureDropperPlaceholders, UCounterMeasureFlarePlaceholders;
+  UMainForm;
 
 {$R *.res}
 

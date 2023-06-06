@@ -14,7 +14,8 @@ function GetCounterMeasureDropperPlaceholderReplacers: TPlaceholderReplacerArray
 implementation
 
 uses
-  UBlockParsing;
+  UBlockParsing,
+  UProjectileReplacers;
 
 function RefireRateReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
 var
@@ -33,48 +34,18 @@ begin
 end;
 
 function RangeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-var
-  MunitionNickname: String;
-  MunitionBegin: ValSInt;
-  MunitionEnd: ValSInt;
-begin
-  MunitionNickname := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'projectile_archetype');
-  if MunitionNickname.Length > 0 then
-  begin
-    MunitionBegin := FindBlockBeginByNickname(FileStrings, MunitionNickname) + 1;
-    MunitionEnd := FindBlockEnd(FileStrings, MunitionBegin);
-    Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, MunitionBegin, MunitionEnd, 'range'));
-  end;
+begin                                        
+  Result := UProjectileReplacers.RangeReplacer(FindProjectileArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function DiversionReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-var
-  MunitionNickname: String;
-  MunitionBegin: ValSInt;
-  MunitionEnd: ValSInt;
-begin
-  MunitionNickname := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'projectile_archetype');
-  if MunitionNickname.Length > 0 then
-  begin
-    MunitionBegin := FindBlockBeginByNickname(FileStrings, MunitionNickname) + 1;
-    MunitionEnd := FindBlockEnd(FileStrings, MunitionBegin);
-    Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, MunitionBegin, MunitionEnd, 'diversion_pctg'));
-  end;
+begin                                             
+  Result := UProjectileReplacers.DiversionReplacer(FindProjectileArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function LifetimeReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
-var
-  MunitionNickname: String;
-  MunitionBegin: ValSInt;
-  MunitionEnd: ValSInt;
 begin
-  MunitionNickname := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'projectile_archetype');
-  if MunitionNickname.Length > 0 then
-  begin
-    MunitionBegin := FindBlockBeginByNickname(FileStrings, MunitionNickname) + 1;
-    MunitionEnd := FindBlockEnd(FileStrings, MunitionBegin);
-    Result := ParseFloatStringToNumberString(FindKeyValue(FileStrings, MunitionBegin, MunitionEnd, 'lifetime'));
-  end;
+  Result := UProjectileReplacers.LifetimeReplacer(FindProjectileArch(FileStrings, BlockBeginLineNumber, BlockEndLineNumber));
 end;
 
 function GetCounterMeasureDropperPlaceholderReplacers: TPlaceholderReplacerArray;
