@@ -30,15 +30,15 @@ end;
 function GetThrusterPlaceholderReplacers: TPlaceholderReplacerArray;
 begin
   Result := nil;
-  SetLength(Result, 4);
+  SetLength(Result, 5);
 
   Result[0].Placeholder := '$speed';
   Result[0].Replacer := @ForceReplacer;
 
   Result[1] := GetPowerUsageReplacer;
-
-  Result[2] := GetMassReplacer;
-  Result[3] := GetVolumeReplacer;
+  Result[2] := GetHitpointsReplacer;
+  Result[3] := GetMassReplacer;
+  Result[4] := GetVolumeReplacer;
 end;
 
 end.

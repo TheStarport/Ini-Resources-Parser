@@ -91,7 +91,7 @@ end;
 function GetShieldGeneratorPlaceholderReplacers: TPlaceholderReplacerArray;
 begin
   Result := nil;
-  SetLength(Result, 11);
+  SetLength(Result, 12);
 
   Result[0].Placeholder := '$classLong';
   Result[0].Replacer := @LongClassReplacer;
@@ -119,9 +119,10 @@ begin
                                                          
   Result[8].Placeholder := '$type';
   Result[8].Replacer := @TypeReplacer;
-
-  Result[9] := GetMassReplacer;
-  Result[10] := GetVolumeReplacer;
+                              
+  Result[9] := GetHitpointsReplacer;
+  Result[10] := GetMassReplacer;
+  Result[11] := GetVolumeReplacer;
 end;
 
 end.
