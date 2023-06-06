@@ -9,16 +9,17 @@ uses
   SysUtils,
   UPlaceholderReplacerCommons;
 
-function GetEnginePlaceholderReplacers: TPlaceholderReplacerArray;
+function GetEnginePlaceholderReplacers: TPlaceholderReplacerArray;  
+function GetEngineClassHandle(const EngineHardpointType: String): String;
 
 implementation
 
 uses
   UBlockParsing;
 
-function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+function GetEngineClassHandle(const EngineHardpointType: String): String;
 begin
-  case FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type') of
+  case EngineHardpointType.ToLower of
     'hp_fighter_engine_special_1': Result := 'L';
     'hp_fighter_engine_special_2': Result := 'H';
     'hp_freighter_engine_special_1': Result := 'X';
@@ -32,6 +33,11 @@ begin
     else
       Result := '';
   end;
+end;
+
+function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+begin
+  Result := GetEngineClassHandle(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type'));
 end;
 
 function LongClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
@@ -58,7 +64,7 @@ var
   Drag: String;
   ParsedForce: Single;
   ParsedDrag: Single;
-begin          
+begin
   Result := '';
   Force := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'max_force');
   Drag := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'linear_drag');
@@ -74,7 +80,7 @@ var
   ParsedForce: Single;
   ParsedDrag: Single;
   ParsedReverseFraction: Single;
-begin         
+begin
   Result := '';
   Force := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'max_force');
   Drag := FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'linear_drag');

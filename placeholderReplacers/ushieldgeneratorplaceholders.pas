@@ -9,23 +9,29 @@ uses
   SysUtils,
   UPlaceholderReplacerCommons;
 
-function GetShieldGeneratorPlaceholderReplacers: TPlaceholderReplacerArray;
+function GetShieldGeneratorPlaceholderReplacers: TPlaceholderReplacerArray;    
+function GetShieldClassHandle(const ShieldHardpointType: String): String;
 
 implementation
 
 uses
   UBlockParsing;
 
-function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+function GetShieldClassHandle(const ShieldHardpointType: String): String;
 begin
-  case FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type') of
+  case ShieldHardpointType.ToLower of
     'hp_fighter_shield_special_1': Result := 'L';
     'hp_fighter_shield_special_2': Result := 'M';
-    'hp_fighter_shield_special_3': Result := 'H';           
+    'hp_fighter_shield_special_3': Result := 'H';
     'hp_freighter_shield_special_1': Result := 'X';
     else
       Result := '';
   end;
+end;
+
+function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+begin
+  Result := GetShieldClassHandle(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type'));
 end;
 
 function LongClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;

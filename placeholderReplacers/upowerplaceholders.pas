@@ -9,20 +9,21 @@ uses
   SysUtils,
   UPlaceholderReplacerCommons;
 
-function GetPowerPlaceholderReplacers: TPlaceholderReplacerArray;
+function GetPowerPlaceholderReplacers: TPlaceholderReplacerArray;        
+function GetPowerClassHandle(const PowerHardpointType: String): String;
 
 implementation
 
 uses
   UBlockParsing;
 
-function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+function GetPowerClassHandle(const PowerHardpointType: String): String;
 begin
-  case FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type') of
+  case PowerHardpointType.ToLower of
     'hp_fighter_power_special_1': Result := 'L';
     'hp_fighter_power_special_2': Result := 'M';
     'hp_fighter_power_special_3': Result := 'H';
-    'hp_fighter_power_special_4': Result := 'X';        
+    'hp_fighter_power_special_4': Result := 'X';
     'hp_freighter_power_special_1': Result := 'L';
     'hp_freighter_power_special_2': Result := 'M';
     'hp_freighter_power_special_3': Result := 'H';
@@ -32,6 +33,11 @@ begin
     else
       Result := '';
   end;
+end;
+
+function ShortClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;
+begin
+  Result := GetPowerClassHandle(FindKeyValue(FileStrings, BlockBeginLineNumber, BlockEndLineNumber, 'hp_type'));
 end;
 
 function LongClassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;

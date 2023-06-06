@@ -103,7 +103,10 @@ begin
   begin
     Line := Strings.Strings[LineNumber].Trim.ToLower;
     if Line.StartsWith(Key) then
+    begin
       Result := Line.Substring(Line.IndexOf('=') + 1).Trim;
+      Break;
+    end;
   end;
 end;
 
