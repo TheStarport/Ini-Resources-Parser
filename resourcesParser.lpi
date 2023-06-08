@@ -263,6 +263,11 @@
         <IsPartOfProject Value="True"/>
         <UnitName Value="UGunPlaceholders"/>
       </Unit>
+      <Unit>
+        <Filename Value="placeholderReplacers\ushipplaceholders.pas"/>
+        <IsPartOfProject Value="True"/>
+        <UnitName Value="UShipPlaceholders"/>
+      </Unit>
     </Units>
   </ProjectOptions>
   <CompilerOptions>

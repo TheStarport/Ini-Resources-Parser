@@ -30,7 +30,8 @@ uses
   UMineDropperPlaceholders,
   UMinePlaceholders,
   UGunPlaceholders,
-  UMunitionPlaceholders;
+  UMunitionPlaceholders,
+  UShipPlaceholders;
 
 procedure ReplacePlaceholders(const FileStrings: TStringList; const FileStringsLineNumber: ValSInt; const Resource: TStringList; const PlaceholderReplacers: TPlaceholderReplacerArray);
 var
@@ -73,7 +74,8 @@ begin
     'minedropper': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMineDropperPlaceholderReplacers);
     'mine': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMinePlaceholderReplacers);
     'gun': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetGunPlaceholderReplacers);
-    'munition': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMunitionPlaceholderReplacers);
+    'munition': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetMunitionPlaceholderReplacers);            
+    'ship': ReplacePlaceholders(FileStrings, FileStringsLineNumber, Resource, GetShipPlaceholderReplacers);
   end;
 end;
 
