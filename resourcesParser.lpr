@@ -10,12 +10,15 @@ uses
   athreads,
   {$ENDIF}
   Interfaces, // this includes the LCL widgetset
+  SysUtils,
   Forms,
   UMainForm;
 
 {$R *.res}
 
 begin
+  DefaultFormatSettings.DecimalSeparator := '.';      
+  DefaultFormatSettings.ThousandSeparator := ',';
   RequireDerivedFormResource := True;
   Application.Title := 'Resources Parser';
   Application.Scaled := True;

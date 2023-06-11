@@ -34,7 +34,7 @@ var
 begin
   Result := Val;
   if TryStrToFloat(Result, Parsed) then
-    Result := Parsed.ToString(TFloatFormat.ffNumber, 0, 2, DefaultFormatSettings).TrimEnd('0').TrimEnd('.');
+    Result := Parsed.ToString(TFloatFormat.ffNumber, 0, 2).TrimRight('0').TrimRight('.');
 end;
 
 function MassReplacer(const FileStrings: TStrings; const BlockBeginLineNumber: ValSInt; const BlockEndLineNumber: ValSInt): String;

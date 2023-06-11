@@ -174,11 +174,6 @@
         <UnitName Value="UPlaceholderReplacerCommons"/>
       </Unit>
       <Unit>
-        <Filename Value="placeholderReplacers\uresourceparsing.pas"/>
-        <IsPartOfProject Value="True"/>
-        <UnitName Value="UResourceParsing"/>
-      </Unit>
-      <Unit>
         <Filename Value="placeholderReplacers\uengineplaceholders.pas"/>
         <IsPartOfProject Value="True"/>
         <UnitName Value="UEnginePlaceholders"/>
