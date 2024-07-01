@@ -144,6 +144,18 @@ var
             ValueParts := LineParts[1].Split([',']);
             if Length(ValueParts) > 3 then
               Line := LineParts[0] + '=' + ValueParts[0] + ',' + ValueParts[1] + ',' + ValueParts[2] + ', ' + IntToStr(ResourcesOfCurrentLine[0].Id);
+          end;           
+          'rumor_type2':
+          begin
+            ValueParts := LineParts[1].Split([',']);
+            if Length(ValueParts) > 3 then
+              Line := LineParts[0] + '=' + ValueParts[0] + ',' + ValueParts[1] + ',' + ValueParts[2] + ', ' + IntToStr(ResourcesOfCurrentLine[0].Id);
+          end;
+          'know':
+          begin
+            ValueParts := LineParts[1].Split([',']);     
+            if Length(ValueParts) > 3 then
+              Line := LineParts[0] + '=' + IntToStr(ResourcesOfCurrentLine[0].Id) + ',' + IntToStr(ResourcesOfCurrentLine[1].Id) + ',' + ValueParts[2] + ', ' + ValueParts[3];
           end;
           'firstname_male',
           'firstname_female',
